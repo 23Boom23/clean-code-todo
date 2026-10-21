@@ -12,8 +12,9 @@ export default defineConfig([
   },
   {
     rules: {
-      'no-unused-vars': 'error',
-      'no-undef': 'warn',
+      'no-var': 'error',
+      'prefer-const': 'error',
+      'no-console': ['warn', { allow: ['warn', 'error'] }],
     },
   },
 ]);
