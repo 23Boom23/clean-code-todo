@@ -100,10 +100,6 @@ const deleteTask = function () {
 //Mark task completed
 const taskCompleted = function () {
   //Append the task list item to the #completed-tasks
-  for (let a = 0; a < completedTasksHolder.children.length; a++) {
-    //bind events to list items chldren(tasksIncompleted)
-    bindTaskEvents(completedTasksHolder.children[i], taskIncomplete);
-  }
   const listItem = this.parentNode;
   completedTasksHolder.appendChild(listItem);
   bindTaskEvents(listItem, taskIncomplete);
@@ -113,17 +109,9 @@ const taskIncomplete = function () {
   //Mark task as incomplete.
   //When the checkbox is unchecked
   //Append the task list item to the #incompleteTasks.
-  for (let i = 0; i < incompleteTaskHolder.children.length; i++) {
-    //bind events to list items chldren(tasksCompleted)
-    bindTaskEvents(incompleteTaskHolder.children[i], taskCompleted);
-  }
   const listItem = this.parentNode;
   incompleteTaskHolder.appendChild(listItem);
   bindTaskEvents(listItem, taskCompleted);
-};
-
-const ajaxRequest = function () {
-  console.log('AJAX Request');
 };
 
 //The glue to hold it all together.
@@ -131,7 +119,6 @@ const ajaxRequest = function () {
 //Set the click handler to the addTask function.
 addButton.onclick = addTask;
 addButton.addEventListener('click', addTask);
-addButton.addEventListener('click', ajaxRequest);
 
 const bindTaskEvents = function (taskListItem, checkBoxEventHandler) {
   //select ListItems children
@@ -146,6 +133,15 @@ const bindTaskEvents = function (taskListItem, checkBoxEventHandler) {
   //Bind taskCompleted to checkBoxEventHandler.
   checkBox.onchange = checkBoxEventHandler;
 };
+
+for (let i = 0; i < incompleteTaskHolder.children.length; i++) {
+  bindTaskEvents(incompleteTaskHolder.children[i], taskCompleted);
+}
+
+for (let i = 0; i < completedTasksHolder.children.length; i++) {
+  bindTaskEvents(completedTasksHolder.children[i], taskIncomplete);
+}
+
 // Issues with usability don't get seen until they are in front of a human tester.
 
 //prevent creation of empty tasks.
