@@ -3,35 +3,27 @@ const addTaskButton = document.getElementsByTagName('button')[0];
 const todoList = document.getElementById('incompleteTasks');
 const completedList = document.getElementById('completed-tasks');
 
+const createElement = function (tagName, properties) {
+  return Object.assign(document.createElement(tagName), properties);
+};
+
 const createTaskElement = function (taskText) {
   const taskItem = document.createElement('li');
+  const checkbox = createElement('input', { type: 'checkbox' });
+  const label = createElement('label', {
+    innerText: taskText,
+    className: 'task',
+  });
+  const editInput = createElement('input', { type: 'text', className: 'task' });
+  const editButton = createElement('button', {
+    innerText: 'Edit',
+    className: 'edit',
+  });
+  const deleteButton = createElement('button', { className: 'delete' });
+  const deleteIcon = createElement('img', { src: './remove.svg' });
 
-  const checkbox = document.createElement('input');
-  const label = document.createElement('label');
-  const editInput = document.createElement('input');
-  const editButton = document.createElement('button');
-  const deleteButton = document.createElement('button');
-  const deleteIcon = document.createElement('img');
-
-  label.innerText = taskText;
-  label.className = 'task';
-
-  checkbox.type = 'checkbox';
-  editInput.type = 'text';
-  editInput.className = 'task';
-
-  editButton.innerText = 'Edit';
-  editButton.className = 'edit';
-
-  deleteButton.className = 'delete';
-  deleteIcon.src = './remove.svg';
-  deleteButton.appendChild(deleteIcon);
-
-  taskItem.appendChild(checkbox);
-  taskItem.appendChild(label);
-  taskItem.appendChild(editInput);
-  taskItem.appendChild(editButton);
-  taskItem.appendChild(deleteButton);
+  deleteButton.append(deleteIcon);
+  taskItem.append(checkbox, label, editInput, editButton, deleteButton);
   return taskItem;
 };
 
