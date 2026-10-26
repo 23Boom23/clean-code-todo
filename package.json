@@ -1,0 +1,16 @@
+{
+  "name": "clean-code-todo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "eslint .",
+    "format": "prettier . --write"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.0.0",
+    "globals": "^17.0.0",
+    "prettier": "^3.0.0"
+  }
+}
