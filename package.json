@@ -5,12 +5,22 @@
   "type": "module",
   "scripts": {
     "lint": "eslint .",
-    "format": "prettier . --write"
+    "format": "prettier . --write",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,mjs,cjs}": [
+      "eslint",
+      "prettier --check"
+    ],
+    "*.{json,html,css,md}": "prettier --check"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "eslint": "^10.0.0",
     "globals": "^17.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.0.0",
     "prettier": "^3.0.0"
   }
 }
